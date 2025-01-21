@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cin-news-links
+  namespace: tst
+  labels:
+    type: cin-news-links
+spec:
+  containers:
+    - name: cin-news-links
+      image: dherkyan/cin-news-links:202501210637
+      env:
+        - name: PROFILES_ACTIVE
+          value: dev
+        - name: H2_WEB_ALLOW_OTHERS
+          value: "true"
+      ports:
+        - containerPort: 8080 # porta da aplicação
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-cin-news-links
+  namespace: tst
+spec:
+  type: ClusterIP
+  selector:
+    type: cin-news-links
+  ports:
+    - name: http
+      targetPort: 8080 # porta da aplicação
+      port: 8080 # porta da aplicação
+#      nodePort: 30008 # porta que será exporta externamente
