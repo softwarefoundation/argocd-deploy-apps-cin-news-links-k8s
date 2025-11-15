@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: cin-news-links
-      image: dherkyan/cin-news-links:202505160601
+      image: dherkyan/cin-news-links:202511151739
       env:
         - name: PROFILES_ACTIVE
           value: dev
